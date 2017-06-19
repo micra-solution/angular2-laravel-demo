@@ -1,0 +1,25 @@
+<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-4">
+				<h4>Login</h4>
+					<form #loginForm="ngForm" (ngSubmit) = "login(loginForm.value,loginForm.valid)" >
+						<div class="form-group" [class.has-error]="!email.valid && submitted">
+							<label>Email</label>
+							<input type="text" name="email" class="form-control" [(ngModel)] = "loginForm.email" #email="ngModel" required>
+						</div>
+						<span *ngIf="email.errors && submitted" class="text-danger">Username is required</span>
+						<div class="form-group" [class.has-error]="!password.valid && submitted">
+							<label>Password</label>
+							<input type="password" name="password" class="form-control" [(ngModel)] = "loginForm.password" #password="ngModel" required>
+						</div>
+						<span *ngIf="password.errors && submitted " class="text-danger">Password is required</span>
+						<div class="form-group">
+							<span class="text-danger" ><strong>{{errorMessage}}</strong></span>
+						</div>
+						<button class="btn btn-success">Sign in</button>
+					</form>
+				</div>
+			</div>
+		</div>
+ </div>

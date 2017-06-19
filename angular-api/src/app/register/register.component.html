@@ -1,0 +1,37 @@
+<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-4">
+				<h4>Register</h4>
+					<form #registerForm="ngForm" (submit) = "register(registerForm.value,registerForm.valid)" >
+						<div class="form-group" [class.has-error]="!name.valid && submitted">
+							<label>Name</label>
+							<input type="text" name="name" class="form-control" [(ngModel)] = "registerForm.name" #name="ngModel" required>
+						</div>
+						<span *ngIf="name.errors && submitted" class="text-danger">Name is required</span>
+						<div class="form-group" [class.has-error]="!email.valid && submitted">
+							<label>Email</label>
+							<input type="text" name="email" class="form-control" [(ngModel)] = "registerForm.email" #email="ngModel" required>
+						</div>
+						<span *ngIf="email.errors && submitted" class="text-danger">Email is required</span>
+						<div class="form-group" [class.has-error]="!password.valid && submitted">
+							<label>Password</label>
+							<input type="password" name="password" class="form-control" [(ngModel)] = "registerForm.password" #password="ngModel" required>
+						</div>
+						<span *ngIf="password.errors && submitted" class="text-danger">Password is required</span>
+						<div class="form-group" [class.has-error]="!confirmpassword.valid && submitted || confirmpassword.valid && registerForm.confirmpassword != registerForm.password && submitted">
+							<label for="confirmpassword">Confirm Password</label>
+							<input type="password" name="confirmpassword" class="form-control" [(ngModel)] = "registerForm.confirmpassword" required validateEqual="password" #confirmpassword="ngModel">
+						</div>
+						<span *ngIf="confirmpassword.errors && submitted" class="text-danger">Confirm Password is required</span>
+						<span *ngIf="confirmpassword.valid && registerForm.confirmpassword != registerForm.password && submitted" class="text-danger">Password not match</span>
+
+						<div class="form-group">
+							<span class="text-danger"><strong>{{errorMessage}}</strong></span>
+						</div>
+						<button class="btn btn-success">Sign in</button>
+					</form>
+				</div>
+			</div>
+		</div>
+ </div>
